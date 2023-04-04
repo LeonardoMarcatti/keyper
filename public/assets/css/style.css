@@ -1,0 +1,96 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  display: grid;
+  grid-template-columns: 1fr;
+  min-height: 100vh;
+  grid-template-rows: 80px minmax(calc(100vh - 110px), auto) 30px;
+}
+
+header h1 {
+  margin-left: 10px;
+}
+
+header a {
+  margin-right: 10px;
+  text-decoration: none;
+  color: white;
+  border: 1px solid white;
+  padding: 10px 20px;
+  border-radius: 15px;
+}
+
+header a:hover {
+  background-color: white;
+  color: rgb(230, 68, 37);
+}
+
+header, footer {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+  background-color:rgb(230, 68, 37);
+  color: white
+}
+
+span {
+  width: 100%;
+}
+
+header > span {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#flash {
+  background-color: lightgreen;
+  width: 100vw;
+  color: darkgreen;
+  text-align: center;
+}
+
+#flashbad {
+  background-color: darkred;
+  width: 50%;
+  color: white;
+  text-align: center;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+#form-container {
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 0 10px gray;
+  background-color: rgb(218, 218, 218);
+}
+
+#form-container > h4 {
+  text-align: center;
+}
+
+#section_login {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+#botton_form {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+main {
+  background-color: silver;
+  width: 100%;
+}

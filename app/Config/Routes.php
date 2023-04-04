@@ -10,6 +10,7 @@ $routes = Services::routes();
  * Router Setup
  * --------------------------------------------------------------------
  */
+$routes->setAutoRoute(false);
 $routes->setDefaultNamespace('App\Controllers');
 $routes->setDefaultController('Home');
 $routes->setDefaultMethod('index');
@@ -29,7 +30,14 @@ $routes->set404Override();
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'Home::index');
+$routes->get('/', 'PagesController::index', ['as' => 'home']);
+$routes->post('/login', 'AuthController::login', ['as' => 'login']);
+$routes->get('/logup', 'PagesController::logup', ['as' => 'logup']);
+$routes->get('/logout', 'AuthController::logout', ['as' => 'logout']);
+$routes->get('/updatePassword', 'AuthController::updatePassword', ['as' => 'updatePassword']);
+$routes->get('/mainPage', 'PagesController::mainPage', ['as' => 'mainPage']);
+$routes->post('/postUpdatePassword', 'AuthController::postUpdatePassword', ['as' => 'postUpdatePassword']);
+$routes->get('/setup', 'PagesController::setup', ['as' => 'setup']);
 
 /*
  * --------------------------------------------------------------------
