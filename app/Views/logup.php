@@ -17,7 +17,7 @@
         </div>
         <div class="mb-3" id="botton_form">
           <div>
-            <button type="submit" class="btn btn-danger">Entrar</button>
+            <button type="submit" class="btn btn-danger">Alterar</button>
             <button type="reset" class="btn btn-primary">Cancelar</button>
           </div>
             <a href=<?= url_to('home') ?>>Voltar</a>

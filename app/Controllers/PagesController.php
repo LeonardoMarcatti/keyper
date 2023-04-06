@@ -27,4 +27,14 @@ class PagesController extends BaseController
     {
         return "<h1>Página de Setup</h1>";
     }
+
+    public function registerKey()
+    {
+        return view('templates/top') . view('regKey') . view('templates/bottom');
+    }
+
+    public function success()
+    {
+        return view('templates/top') . view('success') . view('templates/bottom');
+    }
 }

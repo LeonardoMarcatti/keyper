@@ -17,7 +17,7 @@ class AuthController extends BaseController
         if ($valid) {
             $staffData = $this->model->getStaff($data['staff'], md5($data['password']));
             if ($staffData) {
-                \session()->set(['id' => $staffData['id']]);
+                \session()->set(['id' => $staffData['id'], 'name' => $staffData['name'], 'boss' => $staffData['boss']]);
                 if ($staffData['firstLogin'] == 1) {
                     return \redirect()->route('updatePassword');
                 } else {
@@ -36,18 +36,18 @@ class AuthController extends BaseController
         if(!session()->has('id')){
             return \redirect()->route('mainPage');
         }
-        return view('templates/top') . \view('updatePassword') . \view('templates/bottom');
+        return view('templates/simpleTop') . \view('updatePassword') . \view('templates/bottom');
     }
 
     public function postUpdatePassword()
     {
         $data = $this->request->getPost(['pass1', 'pass2']);
         $valid = $this->validateData($data, [
-            'pass1' => 'required|max_length[255]|min_length[6]',
-            'pass2' => 'required|max_length[255]|min_length[6]'],
+            'pass1' => 'required|max_length[255]|min_length[3]',
+            'pass2' => 'required|max_length[255]|min_length[3]'],
             [
                 'pass1' => ['required' => 'Campo obrigatório', 'min_length' => 'A senha é muito curta' ], 
-                'pass2' =>['required' => 'Campo obrigatório', 'min_length' => 'A senha é muito curta' ]
+                'pass2' =>['required' => 'Campo obrigatório', 'min_length' => 'O rótulo é muito curto' ]
             ]
         );
 

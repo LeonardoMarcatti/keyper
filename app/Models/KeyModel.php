@@ -7,14 +7,14 @@ use CodeIgniter\Model;
 class KeyModel extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'keys';
+    protected $table            = 'keyss';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = [];
+    protected $allowedFields    = ['label'];
 
     // Dates
     protected $useTimestamps = false;
@@ -39,4 +39,12 @@ class KeyModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    public function addKey(array $title)
+    {
+       $data = ['label' => $title['title']];
+       $this->insert($data);
+       return true;
+    }
+
 }

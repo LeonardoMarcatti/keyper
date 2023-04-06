@@ -38,6 +38,12 @@ $routes->get('/updatePassword', 'AuthController::updatePassword', ['as' => 'upda
 $routes->get('/mainPage', 'PagesController::mainPage', ['as' => 'mainPage']);
 $routes->post('/postUpdatePassword', 'AuthController::postUpdatePassword', ['as' => 'postUpdatePassword']);
 $routes->get('/setup', 'PagesController::setup', ['as' => 'setup']);
+$routes->get('/return', 'PagesController::return', ['as' => 'return']);
+$routes->get('/transfer', 'PagesController::transfer', ['as' => 'transfer']);
+$routes->get('/taken', 'PagesController::taken', ['as' => 'taken']);
+$routes->get('/registerKey', 'PagesController::registerKey', ['as' => 'register_key']);
+$routes->get('/success', 'PagesController::success', ['as' => 'success']);
+$routes->post('/postRegisterKey', 'KeysController::postRegisterKey', ['as' => 'postRegisterKey']);
 
 /*
  * --------------------------------------------------------------------

@@ -7,7 +7,12 @@ body {
   display: grid;
   grid-template-columns: 1fr;
   min-height: 100vh;
-  grid-template-rows: 80px minmax(calc(100vh - 110px), auto) 30px;
+  grid-template-rows: 60px minmax(calc(100vh - 90px), auto) 30px;
+}
+
+header {
+  background-color: rgb(230, 68, 37);
+  color: white;
 }
 
 header h1 {
@@ -28,7 +33,11 @@ header a:hover {
   color: rgb(230, 68, 37);
 }
 
-header, footer {
+header small {
+  color: black;
+}
+
+footer {
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
@@ -49,10 +58,16 @@ header > span {
 }
 
 #flash {
+  position: absolute;
   background-color: lightgreen;
   width: 100vw;
   color: darkgreen;
   text-align: center;
+}
+
+#flash > p {
+  padding: 0;
+  margin: 0;
 }
 
 #flashbad {
@@ -93,4 +108,17 @@ header > span {
 main {
   background-color: silver;
   width: 100%;
+  padding: 3.2rem 0 0 0.3rem;
+}
+
+#navbar {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dropdown-item:hover {
+  background-color: rgb(230, 68, 37);
+  color: white;
 }

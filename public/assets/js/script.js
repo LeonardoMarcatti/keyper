@@ -23,7 +23,6 @@ if (url.includes('updatePassword')) {
          document.querySelector('#btn_submit').classList.add('btn-secondary')
          document.querySelector('#btn_submit').classList.remove('btn-danger')
    })
-
 }
 
 $(document).ready(function () {
@@ -39,3 +38,7 @@ $(document).ready(function () {
       }, 2000);
    } 
 });
+
+if (url.includes('index') ||url.includes('public/') ) {
+   
+}
