@@ -122,3 +122,14 @@ main {
   background-color: rgb(230, 68, 37);
   color: white;
 }
+
+section, #success_error {
+  height: 100%;
+}
+
+#success_error {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+}

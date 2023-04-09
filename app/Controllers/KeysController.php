@@ -21,8 +21,13 @@ class KeysController extends BaseController
 
         if ($valid) {
             $this->model = new KeyModel();
-            $insert = $this->model->addKey($data);
-            return \redirect()->route('success')->with('font', \session()->set('origin', 'register_key'));
+            $result = $this->model->addKey($data);
+            if ($result) {
+                return \redirect()->route('success')->with('font', \session()->set('origin', 'register_key'));
+            }
+
+            return \redirect()->route('keyError')->with('font', \session()->set('origin', 'register_key'));
+            
         }
         return \redirect()->route('register_key')->with('errors', \session()->set('err', $this->validator->getErrors())); 
 

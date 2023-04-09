@@ -4,17 +4,17 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class UserModel extends Model
+class CPFsModel extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'users';
+    protected $table            = 'cpfs';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['name', 'id_cpf'];
+    protected $allowedFields    = ['number'];
 
     // Dates
     protected $useTimestamps = false;
@@ -40,20 +40,19 @@ class UserModel extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
-    public function addUser(string $name, int $cpf)
+    public function checkCPF($cpf)
     {
-       if (!$this->checkUser($cpf)) {
-            $data = ['name' => $name, 'id_cpf' => $cpf];
+        return $this->select('id')->where('number', $cpf)->get()->getRowArray();
+    }
+
+    public function addCPF(string $cpf)
+    {
+        if (!$this->checkCPF($cpf)) {
+            $data = ['number' => $cpf];
             $this->insert($data);
             return true;
-       }
+        }
 
-       return false;
+        return false;
     }
-
-    private function checkUser(int $cpf)
-    {
-        return $this->where('id_cpf', $cpf)->first();
-    }
-
 }

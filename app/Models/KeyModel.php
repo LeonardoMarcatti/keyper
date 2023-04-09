@@ -42,9 +42,19 @@ class KeyModel extends Model
 
     public function addKey(array $title)
     {
-       $data = ['label' => $title['title']];
-       $this->insert($data);
-       return true;
+        if (!$this->checkKey($title['title'])) {
+            $data = ['label' => $title['title']];
+            $this->insert($data);
+            return true;
+        }
+
+        return false;
+    }
+
+    private function checkKey(string $key)
+    {
+        $result = $this->select('id')->where('label', $key)->get()->getRowArray();
+        return $result;
     }
 
 }

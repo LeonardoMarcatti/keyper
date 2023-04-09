@@ -60,10 +60,10 @@
               </a>
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="<?=url_to('register_key')?>">Chaves</a></li>
-                <li><a class="dropdown-item" href="#">Usuários</a></li>
+                <li><a class="dropdown-item" href="<?= url_to('registerUser') ?>">Usuários</a></li>
                 <?php 
                   if (session()->get('boss') == 1) { ?>
-                    <li><a class="dropdown-item" href="#">Prevenção</a></li>
+                    <li><a class="dropdown-item" href="<?= url_to('registerStaff') ?>">Prevenção</a></li>
                 <?php  };
                 ?>
               </ul>

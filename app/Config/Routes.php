@@ -32,7 +32,6 @@ $routes->set404Override();
 // route since we don't have to scan directories.
 $routes->get('/', 'PagesController::index', ['as' => 'home']);
 $routes->post('/login', 'AuthController::login', ['as' => 'login']);
-$routes->get('/logup', 'PagesController::logup', ['as' => 'logup']);
 $routes->get('/logout', 'AuthController::logout', ['as' => 'logout']);
 $routes->get('/updatePassword', 'AuthController::updatePassword', ['as' => 'updatePassword']);
 $routes->get('/mainPage', 'PagesController::mainPage', ['as' => 'mainPage']);
@@ -42,8 +41,15 @@ $routes->get('/return', 'PagesController::return', ['as' => 'return']);
 $routes->get('/transfer', 'PagesController::transfer', ['as' => 'transfer']);
 $routes->get('/taken', 'PagesController::taken', ['as' => 'taken']);
 $routes->get('/registerKey', 'PagesController::registerKey', ['as' => 'register_key']);
+$routes->get('/registerUser', 'PagesController::registerUser', ['as' => 'registerUser']);
+$routes->get('/registerStaff', 'PagesController::registerStaff', ['as' => 'registerStaff']);
 $routes->get('/success', 'PagesController::success', ['as' => 'success']);
+$routes->get('/keyError', 'PagesController::keyError', ['as' => 'keyError']);
+$routes->get('/userError', 'PagesController::userError', ['as' => 'userError']);
+$routes->get('/staffError', 'PagesController::staffError', ['as' => 'staffError']);
 $routes->post('/postRegisterKey', 'KeysController::postRegisterKey', ['as' => 'postRegisterKey']);
+$routes->post('/postRegisterUser', 'UsersController::addUser', ['as' => 'postRegisterUser']);
+$routes->post('/postRegisterStaff', 'StaffController::addStaff', ['as' => 'postRegisterStaff']);
 
 /*
  * --------------------------------------------------------------------

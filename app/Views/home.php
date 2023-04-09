@@ -10,12 +10,12 @@
             <?= csrf_field() ?>
           <div class="mb-3">
               <label for="staff" class="form-label">Usuário:</label>
-              <input type="text" name="staff" id="staff" class="form-control" value="<?= set_value('title') ?>">
+              <input type="text" name="staff" id="staff" class="form-control" value="<?= set_value('title') ?>"  required>
               <small><?= session()->getFlashdata('errors')['staff'] ?? '' ?></small>
           </div>
           <div class="mb-3">
               <label for="password" class="form-label">Senha:</label>
-              <input type="password" name="password" id="password" class="form-control" value="<?= set_value('title') ?>">
+              <input type="password" name="password" id="password" class="form-control" value="<?= set_value('title') ?>" required>
               <small><?= session()->getFlashdata('errors')['password'] ?? '' ?></small>
           </div>
           <div class="mb-3" id="botton_form">
@@ -23,7 +23,6 @@
               <button type="submit" class="btn btn-danger">Entrar</button>
               <button type="reset" class="btn btn-primary">Cancelar</button>
             </div>
-              <a href=<?= url_to('logup') ?> >Admin</a>
           </div>
         </form>
     </div>

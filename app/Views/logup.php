@@ -1,5 +1,6 @@
 <main>
   <section id="section_login">
+  <span id="flashbad"><?= session()->getFlashdata('bad_login') ?? '' ?></span>
     <div class="col-6" id="form-container">
     <h4>Login Administrador</h4>
     <?php helper('form'); ?>
@@ -17,7 +18,7 @@
         </div>
         <div class="mb-3" id="botton_form">
           <div>
-            <button type="submit" class="btn btn-danger">Alterar</button>
+            <button type="submit" class="btn btn-danger">Entrar</button>
             <button type="reset" class="btn btn-primary">Cancelar</button>
           </div>
             <a href=<?= url_to('home') ?>>Voltar</a>
