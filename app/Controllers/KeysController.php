@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\KeyModel;
+use App\Models\LogModel;
 
 class KeysController extends BaseController
 {
@@ -30,6 +31,20 @@ class KeysController extends BaseController
             
         }
         return \redirect()->route('register_key')->with('errors', \session()->set('err', $this->validator->getErrors())); 
+    }
 
+    public function taken()
+    {
+        $data = $this->request->getPost(['id_key', 'id_user']);
+        $valid = $this->validateData($data, [
+            'id_key' => 'required', 'id_user' => 'required'], ['id_key' => ['required' => 'O campo é obrigatório'], 'id_user' => ['required' => 'O campo é obrigatório']]);
+        $data['staff'] = \session()->get('id');
+
+        if ($valid) {
+            $this->model = new LogModel();
+            $this->model->addLog(\session()->get('id'), $data['id_key'], $data['id_user']);
+            return \redirect()->route('success')->with('font', \session()->set('origin', 'taken'));
+        }
+            return \redirect()->route('taken')->with('errors', \session()->set('err', $this->validator->getErrors())); 
     }
 }

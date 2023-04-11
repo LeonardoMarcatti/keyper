@@ -57,4 +57,8 @@ class KeyModel extends Model
         return $result;
     }
 
+    public function getAllKeys()
+    {
+        return $this->findAll();
+    }
 }

@@ -4,17 +4,17 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class UserModel extends Model
+class LogModel extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'users';
+    protected $table            = 'logs';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['name', 'id_cpf'];
+    protected $allowedFields    = ['id_staff', 'id_key', 'id_user', 'date', 'returned'];
 
     // Dates
     protected $useTimestamps = false;
@@ -40,25 +40,10 @@ class UserModel extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
-    public function addUser(string $name, int $cpf)
+    public function addLog(string $id_staff, string $id_key, string $id_user)
     {
-       if (!$this->checkUser($cpf)) {
-            $data = ['name' => $name, 'id_cpf' => $cpf];
-            $this->insert($data);
-            return true;
-       }
-
-       return false;
+        $data = ['id_staff' => $id_staff, 'id_user' => $id_user, 'id_key' => $id_key];
+        $this->insert($data);
+        return true;
     }
-
-    private function checkUser(int $cpf)
-    {
-        return $this->where('id_cpf', $cpf)->first();
-    }
-
-    public function getAllUsers()
-    {
-        return $this->findAll();
-    }
-
 }

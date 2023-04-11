@@ -1,7 +1,7 @@
 <main>
   <section>
     <h2>Cadastrar Usuário</h2>
-      <div class="col-6 offset-4">
+      <div class="col-6 offset-3">
         <form action="<?= url_to('postRegisterUser') ?>" method="post">
           <?php helper('form'); ?>
           <?= session()->getFlashdata('error') ?>

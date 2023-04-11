@@ -2,8 +2,14 @@
 
 namespace App\Controllers;
 
+use App\Models\KeyModel;
+use App\Models\UserModel;
+
 class PagesController extends BaseController
 {
+    private array $data;
+    private object $model;
+
     public function index()
     {
         return view('templates/top') . view('home') . view('templates/bottom');
@@ -82,6 +88,18 @@ class PagesController extends BaseController
     {
         if (\session()->has('id')) {
             return view('templates/top') . view('staffError') . view('templates/bottom');
+        }
+        return \redirect()->route('home');
+    }
+
+    public function taken()
+    {
+        if (\session()->has('id')) {
+            $this->model = new KeyModel();
+            $this->data['keys'] = $this->model->getAllKeys();
+            $this->model = new UserModel();
+            $this->data['users'] = $this->model->getAllUsers();
+            return view('templates/top') . view('taken', $this->data) . view('templates/bottom');
         }
         return \redirect()->route('home');
     }

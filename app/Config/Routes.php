@@ -40,6 +40,7 @@ $routes->get('/setup', 'PagesController::setup', ['as' => 'setup']);
 $routes->get('/return', 'PagesController::return', ['as' => 'return']);
 $routes->get('/transfer', 'PagesController::transfer', ['as' => 'transfer']);
 $routes->get('/taken', 'PagesController::taken', ['as' => 'taken']);
+$routes->post('/postTaken', 'KeysController::taken', ['as' => 'postTaken']);
 $routes->get('/registerKey', 'PagesController::registerKey', ['as' => 'register_key']);
 $routes->get('/registerUser', 'PagesController::registerUser', ['as' => 'registerUser']);
 $routes->get('/registerStaff', 'PagesController::registerStaff', ['as' => 'registerStaff']);
