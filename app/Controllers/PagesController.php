@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\KeyModel;
+use App\Models\LogModel;
 use App\Models\UserModel;
 
 class PagesController extends BaseController
@@ -92,9 +93,33 @@ class PagesController extends BaseController
         return \redirect()->route('home');
     }
 
+    public function return()
+    {
+        if (\session()->has('id')) {
+            $this->model = new LogModel();
+            $this->data['log'] = $this->model->getTakenKeys();
+            return view('templates/top') . view('return', $this->data) . view('templates/bottom');
+        }
+        return \redirect()->route('home');
+    }
+
+    private function orderKeys(array $keys)
+    {
+        $ordered = [];
+
+        foreach ($keys as $key => $value) {
+            $ordered[] = $value['id_key'];
+        }
+
+        return $ordered;
+    }
+
     public function taken()
     {
         if (\session()->has('id')) {
+            $this->model = new LogModel();
+            $this->data['taken'] = $this->model->getAvailableKeys();
+            $this->data['taken'] = $this->orderKeys($this->data['taken']);
             $this->model = new KeyModel();
             $this->data['keys'] = $this->model->getAllKeys();
             $this->model = new UserModel();

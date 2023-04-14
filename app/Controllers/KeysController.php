@@ -47,4 +47,19 @@ class KeysController extends BaseController
         }
             return \redirect()->route('taken')->with('errors', \session()->set('err', $this->validator->getErrors())); 
     }
+
+    public function returnKey()
+    {
+       $data = $this->request->getPost(['key']);
+       $valid = $this->validateData($data, ['key' => 'required'], ['key' => ['required' => 'Selecione uma chave']]);
+       $data['staff'] = \session()->get('id');
+       $data['date'] = date('Y-m-d h:i:s');
+
+       if ($valid) {
+        $this->model = new LogModel();
+        $this->model->returnKey($data['key'], \session()->get('id'), $data['date']);
+        return \redirect()->route('success')->with('font', \session()->set('origin', 'return'));
+    }
+        return \redirect()->route('return')->with('errors', \session()->set('err', $this->validator->getErrors())); 
+    }
 }

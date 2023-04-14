@@ -14,7 +14,7 @@ class LogModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['id_staff', 'id_key', 'id_user', 'date', 'returned'];
+    protected $allowedFields    = ['id_staff', 'id_key', 'id_user', 'date_taken', 'returned', 'id_staff_returned', 'date_returned'];
 
     // Dates
     protected $useTimestamps = false;
@@ -45,5 +45,20 @@ class LogModel extends Model
         $data = ['id_staff' => $id_staff, 'id_user' => $id_user, 'id_key' => $id_key];
         $this->insert($data);
         return true;
+    }
+
+    public function getTakenKeys()
+    {
+        return $this->table('logs')->select('logs.id as id, logs.date_taken as data, s.name as name, s.id as id_staff, k.label as key, k.id as id_key, u.name as User, u.id as id_user')->join('keyss as k', 'k.id = logs.id_key')->join('staff as s', 'logs.id_staff = s.id')->join('users as u', 'logs.id_user = u.id')->where('logs.returned = 0')->get()->getResultArray();
+    }
+
+    public function getAvailableKeys()
+    {
+        return $this->select('id_key')->distinct()->where('logs.returned = 0')->get()->getResultArray();
+    }
+
+    public function returnKey(string $key, string $staff, string $date)
+    {
+        $this->set('returned', 1)->set('id_staff_returned', $staff)->set('date_returned', $date)->where('id_key', $key)->update();
     }
 }

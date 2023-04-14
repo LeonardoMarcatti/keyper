@@ -31,16 +31,13 @@ $routes->set404Override();
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'PagesController::index', ['as' => 'home']);
-$routes->post('/login', 'AuthController::login', ['as' => 'login']);
 $routes->get('/logout', 'AuthController::logout', ['as' => 'logout']);
 $routes->get('/updatePassword', 'AuthController::updatePassword', ['as' => 'updatePassword']);
 $routes->get('/mainPage', 'PagesController::mainPage', ['as' => 'mainPage']);
-$routes->post('/postUpdatePassword', 'AuthController::postUpdatePassword', ['as' => 'postUpdatePassword']);
 $routes->get('/setup', 'PagesController::setup', ['as' => 'setup']);
 $routes->get('/return', 'PagesController::return', ['as' => 'return']);
 $routes->get('/transfer', 'PagesController::transfer', ['as' => 'transfer']);
 $routes->get('/taken', 'PagesController::taken', ['as' => 'taken']);
-$routes->post('/postTaken', 'KeysController::taken', ['as' => 'postTaken']);
 $routes->get('/registerKey', 'PagesController::registerKey', ['as' => 'register_key']);
 $routes->get('/registerUser', 'PagesController::registerUser', ['as' => 'registerUser']);
 $routes->get('/registerStaff', 'PagesController::registerStaff', ['as' => 'registerStaff']);
@@ -48,9 +45,15 @@ $routes->get('/success', 'PagesController::success', ['as' => 'success']);
 $routes->get('/keyError', 'PagesController::keyError', ['as' => 'keyError']);
 $routes->get('/userError', 'PagesController::userError', ['as' => 'userError']);
 $routes->get('/staffError', 'PagesController::staffError', ['as' => 'staffError']);
+$routes->get('/return', 'PagesController::return', ['as' => 'return']);
+
 $routes->post('/postRegisterKey', 'KeysController::postRegisterKey', ['as' => 'postRegisterKey']);
 $routes->post('/postRegisterUser', 'UsersController::addUser', ['as' => 'postRegisterUser']);
 $routes->post('/postRegisterStaff', 'StaffController::addStaff', ['as' => 'postRegisterStaff']);
+$routes->post('/login', 'AuthController::login', ['as' => 'login']);
+$routes->post('/postUpdatePassword', 'AuthController::postUpdatePassword', ['as' => 'postUpdatePassword']);
+$routes->post('/postTaken', 'KeysController::taken', ['as' => 'postTaken']);
+$routes->post('/returnKey', 'KeysController::returnKey', ['as' => 'returnKey']);
 
 /*
  * --------------------------------------------------------------------

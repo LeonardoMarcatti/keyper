@@ -12,9 +12,11 @@
           <select class="form-select" aria-label="Default select example" id="keySelect" name="id_key">
             <option selected disabled>Selecione uma chave</option>
             <?php
-                foreach ($keys as $key => $value) { ?>
-                  <option value="<?=$value['id']?>"><?=$value['label']?></option>
-              <?php  };
+                foreach ($keys as $key => $value) { 
+                  if (!in_array($value['id'], $taken)) { ?>
+                    <option value="<?=$value['id']?>"><?=$value['label']?></option>   
+                <?php };
+                };
             ?>
           </select>
           <small class="form-text"><?= session()->get('err')['id_key'] ?? '' ?></small>
