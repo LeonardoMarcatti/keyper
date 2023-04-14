@@ -118,7 +118,7 @@ class PagesController extends BaseController
     {
         if (\session()->has('id')) {
             $this->model = new LogModel();
-            $this->data['taken'] = $this->model->getAvailableKeys();
+            $this->data['taken'] = $this->model->getUnAvailableKeys();
             $this->data['taken'] = $this->orderKeys($this->data['taken']);
             $this->model = new KeyModel();
             $this->data['keys'] = $this->model->getAllKeys();
@@ -128,4 +128,21 @@ class PagesController extends BaseController
         }
         return \redirect()->route('home');
     }
+
+    public function transfer()
+    {
+        if (\session()->has('id')) {
+            $this->model = new LogModel();
+            $this->data['taken'] = $this->model->getUnAvailableKeys();
+            $this->data['taken'] = $this->orderKeys($this->data['taken']);
+            $this->model = new KeyModel();
+            $this->data['keys'] = $this->model->getAllKeys();
+            $this->model = new UserModel();
+            $this->data['users'] = $this->model->getAllUsers();
+            return view('templates/top') . view('transfer', $this->data) . view('templates/bottom');
+        }
+        return \redirect()->route('home');
+    }
+
+
 }

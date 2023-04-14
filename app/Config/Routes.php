@@ -53,6 +53,7 @@ $routes->post('/postRegisterStaff', 'StaffController::addStaff', ['as' => 'postR
 $routes->post('/login', 'AuthController::login', ['as' => 'login']);
 $routes->post('/postUpdatePassword', 'AuthController::postUpdatePassword', ['as' => 'postUpdatePassword']);
 $routes->post('/postTaken', 'KeysController::taken', ['as' => 'postTaken']);
+$routes->post('/postTransfer', 'KeysController::transfer', ['as' => 'postTransfer']);
 $routes->post('/returnKey', 'KeysController::returnKey', ['as' => 'returnKey']);
 
 /*

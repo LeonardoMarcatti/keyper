@@ -62,4 +62,21 @@ class KeysController extends BaseController
     }
         return \redirect()->route('return')->with('errors', \session()->set('err', $this->validator->getErrors())); 
     }
+
+    public function transfer()
+    {
+        $data = $this->request->getPost(['id_key', 'id_user']);
+        $valid = $this->validateData($data, [
+            'id_key' => 'required', 'id_user' => 'required'], ['id_key' => ['required' => 'O campo é obrigatório'], 'id_user' => ['required' => 'O campo é obrigatório']]);
+        $data['staff'] = \session()->get('id');
+        $data['date'] = date('Y-m-d h:i:s');
+
+        if ($valid) {
+            $this->model = new LogModel();
+            $this->model->returnKey($data['id_key'], \session()->get('id'), $data['date']);
+            $this->model->addLog(\session()->get('id'), $data['id_key'], $data['id_user']);
+            return \redirect()->route('success')->with('font', \session()->set('origin', 'transfer'));
+        }
+            return \redirect()->route('transfer')->with('errors', \session()->set('err', $this->validator->getErrors())); 
+    }
 }

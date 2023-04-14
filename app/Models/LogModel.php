@@ -52,9 +52,9 @@ class LogModel extends Model
         return $this->table('logs')->select('logs.id as id, logs.date_taken as data, s.name as name, s.id as id_staff, k.label as key, k.id as id_key, u.name as User, u.id as id_user')->join('keyss as k', 'k.id = logs.id_key')->join('staff as s', 'logs.id_staff = s.id')->join('users as u', 'logs.id_user = u.id')->where('logs.returned = 0')->get()->getResultArray();
     }
 
-    public function getAvailableKeys()
+    public function getUnAvailableKeys()
     {
-        return $this->select('id_key')->distinct()->where('logs.returned = 0')->get()->getResultArray();
+        return $this->select('id_key, id_user')->distinct()->where('logs.returned = 0')->get()->getResultArray();
     }
 
     public function returnKey(string $key, string $staff, string $date)
