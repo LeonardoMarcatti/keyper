@@ -61,4 +61,9 @@ class LogModel extends Model
     {
         $this->set('returned', 1)->set('id_staff_returned', $staff)->set('date_returned', $date)->where('id_key', $key)->update();
     }
+
+    public function reportKey(string $key)
+    {
+        return $this->table('logs')->select('logs.id, logs.date_taken, logs.date_returned, s.name as staff, s2.name as staff2, k.label, u.name as user' )->join('staff as s', 'logs.id_staff = s.id' ,'left')->join('staff as s2', 'logs.id_staff_returned = s2.id', 'left')->join('keyss as k', 'logs.id_key = k.id', 'left')->join('users as u', 'logs.id_user = u.id', 'left')->where('k.id = ' . $key)->limit(20)->orderBy('id', 'desc')->get()->getResultArray();
+    }
 }

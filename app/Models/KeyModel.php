@@ -59,6 +59,6 @@ class KeyModel extends Model
 
     public function getAllKeys()
     {
-        return $this->findAll();
+        return $this->orderBy('id')->findAll();
     }
 }

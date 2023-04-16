@@ -144,5 +144,48 @@ class PagesController extends BaseController
         return \redirect()->route('home');
     }
 
+    public function reportKey()
+    {
+        if (\session()->has('id')) {
+            $this->data['report'] = null;
+            $this->model = new KeyModel();
+            $this->data['keys'] = $this->model->getAllKeys();
+            return view('templates/top') . view('reportKey', $this->data) . view('templates/bottom');
+        }
+        return \redirect()->route('home');
+    }
+
+    public function postReportKey()
+    {
+        if (\session()->has('id')) {
+            $this->data['report'] = null;
+            $this->model = new KeyModel();
+            $this->data['keys'] = $this->model->getAllKeys();
+            $data = $this->request->getPost(['key']);
+            $valid = $this->validateData($data, ['key' => 'required'], ['key' => ['required' => 'Selecione uma chave']]);
+            if ($valid) {
+                $this->model = new LogModel();
+                $this->data['report'] = $this->model->reportKey($data['key']);
+                // var_dump($this->data['report']);
+                // die();
+                return view('templates/top') . view('reportKey', $this->data) . view('templates/bottom');
+            } else {
+                return \redirect()->route('reportKey')->with('errors', \session()->set('err', $this->validator->getErrors()));
+            }
+        }
+
+        return \redirect()->route('home');
+
+
+        // if ($valid) {
+        //     $this->model = new StaffModel();
+        //     $update = $this->model->updatePassword(\session()->get('id'), $data['pass1']);
+        //     if ($update) {
+        //         return \redirect()->route('home')->with('message', 'Senha atualizada com sucesso!');
+        //     }
+        // } else {
+        //     return \redirect()->route('updatePassword')->with('errors', $this->validator->getErrors());
+        // }
+    }
 
 }

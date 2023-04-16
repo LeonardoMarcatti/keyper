@@ -51,7 +51,7 @@ class StaffModel extends Model
         return true;
     }
 
-    public function addStaff(string $staff, string $pass, string $boss)
+    public function addStaff(string $staff, string $pass, string $boss = null)
     {
         if (!$this->getStaff($staff, $pass)) {
             $data = ['name' => $staff, 'password' => $pass, 'boss' => $boss];

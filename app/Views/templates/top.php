@@ -45,7 +45,7 @@
                 Relatórios
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Chaves</a></li>
+                <li><a class="dropdown-item" href="<?=url_to('reportKey')?>">Chaves</a></li>
                 <li><a class="dropdown-item" href="#">Usuários</a></li>
                 <?php 
                   if (session()->get('boss') == 1) { ?>
@@ -83,7 +83,7 @@
           </li>
         </ul>
       </div>
-      <small>Bem vindo <?= session()->get('name')?></small>
+      <small>Bem vindo  <?= strtoupper(session()->get('name'))?></small>
     </div>
   </nav>
             <?php }
