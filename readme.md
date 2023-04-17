@@ -1,1 +1,0 @@
-Administre suas chaves
