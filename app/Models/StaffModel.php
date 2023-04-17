@@ -51,6 +51,11 @@ class StaffModel extends Model
         return true;
     }
 
+    public function getAllStaff()
+    {
+        return $this->orderBy('id')->findAll();
+    }
+
     public function addStaff(string $staff, string $pass, string $boss = null)
     {
         if (!$this->getStaff($staff, $pass)) {

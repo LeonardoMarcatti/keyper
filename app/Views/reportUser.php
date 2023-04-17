@@ -1,22 +1,22 @@
 <main>
   <section>
-    <h2>Relatório de Chaves</h2>
+    <h2>Relatório de Usuários</h2>
     <div class="col-4 offset-4">
-      <form action="<?= url_to('postReportKey') ?>" method="post">
+      <form action="<?= url_to('postReportUser') ?>" method="post">
         <?php helper('form'); ?>
         <?= session()->getFlashdata('error') ?>
         <?= validation_list_errors() ?>
         <?= csrf_field() ?>
         <div class="mb-3">
-          <label for="key" class="form-label">Chave:</label>
-          <select name="key" id="key" class="form-select">
-            <option value="0" selected disabled>Escolha uma chave</option>
+          <label for="user" class="form-label">Chave:</label>
+          <select name="user" id="user" class="form-select">
+            <option value="0" selected disabled>Escolha um usuário</option>
             <?php
-              foreach ($keys as $key => $value) { ?>
-                <option value="<?= $value['id'] ?>"><?=$value['label']?></option>
+              foreach ($users as $key => $value) { ?>
+                <option value="<?= $value['id'] ?>"><?=$value['name']?></option>
               <?php }; ?>
           </select>
-          <small><?= session()->get('err')['key'] ?? '' ?></small>
+          <small><?= session()->get('err')['user'] ?? '' ?></small>
         </div>
         <div class="mb-3">
           <button type="submit" class="btn btn-danger">Relatório</button>

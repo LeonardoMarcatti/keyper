@@ -66,4 +66,14 @@ class LogModel extends Model
     {
         return $this->table('logs')->select('logs.id, logs.date_taken, logs.date_returned, s.name as staff, s2.name as staff2, k.label, u.name as user' )->join('staff as s', 'logs.id_staff = s.id' ,'left')->join('staff as s2', 'logs.id_staff_returned = s2.id', 'left')->join('keyss as k', 'logs.id_key = k.id', 'left')->join('users as u', 'logs.id_user = u.id', 'left')->where('k.id = ' . $key)->limit(20)->orderBy('id', 'desc')->get()->getResultArray();
     }
+
+    public function reportUser(string $user)
+    {
+        return $this->table('logs')->select('logs.id, logs.date_taken, logs.date_returned, s.name as staff, s2.name as staff2, k.label, u.name as user' )->join('staff as s', 'logs.id_staff = s.id' ,'left')->join('staff as s2', 'logs.id_staff_returned = s2.id', 'left')->join('keyss as k', 'logs.id_key = k.id', 'left')->join('users as u', 'logs.id_user = u.id', 'left')->where('u.id = ' . $user)->limit(20)->orderBy('id', 'desc')->get()->getResultArray();
+    }
+
+    public function reportStaff(string $staff)
+    {
+        return $this->table('logs')->select('logs.id, logs.date_taken, logs.date_returned, s.name as staff, s2.name as staff2, k.label, u.name as user' )->join('staff as s', 'logs.id_staff = s.id' ,'left')->join('staff as s2', 'logs.id_staff_returned = s2.id', 'left')->join('keyss as k', 'logs.id_key = k.id', 'left')->join('users as u', 'logs.id_user = u.id', 'left')->where('s.id = ' . $staff)->limit(20)->orderBy('id', 'desc')->get()->getResultArray();
+    }
 }

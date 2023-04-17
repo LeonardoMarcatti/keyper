@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\KeyModel;
 use App\Models\LogModel;
+use App\Models\StaffModel;
 use App\Models\UserModel;
 
 class PagesController extends BaseController
@@ -166,8 +167,6 @@ class PagesController extends BaseController
             if ($valid) {
                 $this->model = new LogModel();
                 $this->data['report'] = $this->model->reportKey($data['key']);
-                // var_dump($this->data['report']);
-                // die();
                 return view('templates/top') . view('reportKey', $this->data) . view('templates/bottom');
             } else {
                 return \redirect()->route('reportKey')->with('errors', \session()->set('err', $this->validator->getErrors()));
@@ -175,17 +174,67 @@ class PagesController extends BaseController
         }
 
         return \redirect()->route('home');
-
-
-        // if ($valid) {
-        //     $this->model = new StaffModel();
-        //     $update = $this->model->updatePassword(\session()->get('id'), $data['pass1']);
-        //     if ($update) {
-        //         return \redirect()->route('home')->with('message', 'Senha atualizada com sucesso!');
-        //     }
-        // } else {
-        //     return \redirect()->route('updatePassword')->with('errors', $this->validator->getErrors());
-        // }
     }
 
+    public function reportUser()
+    {
+        if (\session()->has('id')) {
+            $this->data['report'] = null;
+            $this->model = new UserModel();
+            $this->data['users'] = $this->model->getAllUsers();
+            return view('templates/top') . view('reportUser', $this->data) . view('templates/bottom');
+        }
+        return \redirect()->route('home');
+    }
+
+    public function postReportUser()
+    {
+        if (\session()->has('id')) {
+            $this->data['report'] = null;
+            $this->model = new UserModel();
+            $this->data['users'] = $this->model->getAllUsers();
+            $data = $this->request->getPost(['user']);
+            $valid = $this->validateData($data, ['user' => 'required'], ['user' => ['required' => 'Selecione um usuário']]);
+            if ($valid) {
+                $this->model = new LogModel();
+                $this->data['report'] = $this->model->reportUser($data['user']);
+                return view('templates/top') . view('reportUser', $this->data) . view('templates/bottom');
+            } else {
+                return \redirect()->route('reportUser')->with('errors', \session()->set('err', $this->validator->getErrors()));
+            }
+        }
+
+        return \redirect()->route('home');
+    }
+
+    public function reportStaff()
+    {
+        if (\session()->has('id')) {
+            $this->data['report'] = null;
+            $this->model = new StaffModel();
+            $this->data['staff'] = $this->model->getAllStaff();
+            return view('templates/top') . view('reportStaff', $this->data) . view('templates/bottom');
+        }
+        return \redirect()->route('home');
+    }
+
+    public function postReportStaff()
+    {
+        if (\session()->has('id')) {
+            $this->data['report'] = null;
+            $this->model = new StaffModel();
+            $this->data['staff'] = $this->model->getAllStaff();
+            $data = $this->request->getPost(['staff']);
+            $valid = $this->validateData($data, ['staff' => 'required'], ['staff' => ['required' => 'Selecione um staff']]);
+            if ($valid) {
+                $this->model = new LogModel();
+                $this->data['report'] = $this->model->reportStaff($data['staff']);
+                return view('templates/top') . view('reportStaff', $this->data) . view('templates/bottom');
+            } else {
+                return \redirect()->route('reportStaff')->with('errors', \session()->set('err', $this->validator->getErrors()));
+            }
+        }
+
+        return \redirect()->route('home');
+    }
 }

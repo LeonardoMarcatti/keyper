@@ -47,6 +47,8 @@ $routes->get('/userError', 'PagesController::userError', ['as' => 'userError']);
 $routes->get('/staffError', 'PagesController::staffError', ['as' => 'staffError']);
 $routes->get('/return', 'PagesController::return', ['as' => 'return']);
 $routes->get('/reportKey', 'PagesController::reportKey', ['as' => 'reportKey']);
+$routes->get('/reportUser', 'PagesController::reportUser', ['as' => 'reportUser']);
+$routes->get('/reportStaff', 'PagesController::reportStaff', ['as' => 'reportStaff']);
 
 $routes->post('/postRegisterKey', 'KeysController::postRegisterKey', ['as' => 'postRegisterKey']);
 $routes->post('/postRegisterUser', 'UsersController::addUser', ['as' => 'postRegisterUser']);
@@ -57,6 +59,8 @@ $routes->post('/postTaken', 'KeysController::taken', ['as' => 'postTaken']);
 $routes->post('/postTransfer', 'KeysController::transfer', ['as' => 'postTransfer']);
 $routes->post('/returnKey', 'KeysController::returnKey', ['as' => 'returnKey']);
 $routes->post('/postReportKey', 'PagesController::postReportKey', ['as' => 'postReportKey']);
+$routes->post('/postReportUser', 'PagesController::postReportUser', ['as' => 'postReportUser']);
+$routes->post('/postReportStaff', 'PagesController::postReportStaff', ['as' => 'postReportStaff']);
 
 /*
  * --------------------------------------------------------------------
