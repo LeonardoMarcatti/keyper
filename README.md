@@ -5,6 +5,7 @@
 <h3>Instalação</h3>
 <p>É necessário ter instalado em sua máquina Apache2, PHP 7/8+, MySQL/MariaDB, Git e Composer.</p>
 <p>Faça a clonagem do repositório em sua máquina, entre na pasta do projeto e execute o comando composer install</p>
+<p>Rode o script sql que se encontra aqui chamado schema.sql para criar o DB</p>
 
 <h3>Configuração</h3>
 <h4>Arquivo .env</h4>
