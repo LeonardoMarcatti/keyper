@@ -14,6 +14,8 @@
       <script src="https://kit.fontawesome.com/ec29234e56.js" crossorigin="anonymous" defer></script>
       <link rel="stylesheet" href="<?= base_url('assets/css/style.css') ?>">
       <script src="<?= base_url('assets/js/script.js') ?>" defer></script>
+      <script src="<?= base_url('assets/js/updateLogin.js') ?>" defer></script>
+      <script src="<?= base_url('assets/js/updatePassword.js') ?>" defer></script>
       <title>PHP</title>
    </head>
    <body>

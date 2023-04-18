@@ -127,6 +127,18 @@ section, #success_error {
   height: 100%;
 }
 
+#sec_setup > h2 {
+  margin: 0 auto;
+  text-align: center;
+}
+
+#sec_container {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+  align-items: center;
+}
+
 #success_error {
   display: flex;
   flex-flow: column nowrap;

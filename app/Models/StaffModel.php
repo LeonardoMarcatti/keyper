@@ -42,7 +42,7 @@ class StaffModel extends Model
 
     public function getStaff(string $staff, string $pass)
     {
-        return $this->where(['name' => $staff])->first();
+        return $this->where(['name' => $staff, 'password' => $pass])->first();
     }
 
     public function updatePassword(string $id, string $pass)
