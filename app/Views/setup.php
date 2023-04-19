@@ -11,11 +11,13 @@
           <?= csrf_field() ?>
           <div class="mb-3">
               <label for="name" class="form-label">Novo Login:</label>
-              <input type="text" name="name" id="name" class="form-control" value="<?= set_value('name') ?>">
+              <input type="text" name="name" id="name" class="form-control" value="<?= set_value('name') ?>" required>
+              <small class="form-text"><?= session()->get('errors')['name'] ?? '' ?></small>
           </div>
           <div class="mb-3">
               <label for="name2" class="form-label">Repita Novo Login:</label>
-              <input type="text" name="name2" id="name2" class="form-control" value="<?= set_value('name2') ?>">
+              <input type="text" name="name2" id="name2" class="form-control" value="<?= set_value('name2') ?>" required>
+              <small class="form-text"><?= session()->get('errors')['name2'] ?? '' ?></small>
           </div>
           <div class="mb-3" id="botton_form">
             <div>
@@ -31,11 +33,13 @@
           <?= csrf_field() ?>
           <div class="mb-3">
               <label for="pass1" class="form-label">Nova Senha:</label>
-              <input type="password" name="pass1" id="pass1" class="form-control" value="<?= set_value('pass1') ?>">
+              <input type="password" name="pass1" id="pass1" class="form-control" value="<?= set_value('pass1') ?>" required>
+              <small class="form-text"><?= session()->get('errors')['pass1'] ?? '' ?></small>
           </div>
           <div class="mb-3">
               <label for="pass2" class="form-label">Repita Nova Senha:</label>
-              <input type="password" name="pass2" id="pass2" class="form-control" value="<?= set_value('pass2') ?>">
+              <input type="password" name="pass2" id="pass2" class="form-control" value="<?= set_value('pass2') ?>" required>
+              <small class="form-text"><?= session()->get('errors')['pass2'] ?? '' ?></small>
           </div>
           <div class="mb-3" id="botton_form">
             <div>

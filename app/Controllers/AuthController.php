@@ -47,7 +47,7 @@ class AuthController extends BaseController
             'pass2' => 'required|max_length[255]|min_length[3]'],
             [
                 'pass1' => ['required' => 'Campo obrigatório', 'min_length' => 'A senha é muito curta' ], 
-                'pass2' =>['required' => 'Campo obrigatório', 'min_length' => 'O rótulo é muito curto' ]
+                'pass2' => ['required' => 'Campo obrigatório', 'min_length' => 'A senha é muito curta' ]
             ]
         );
 
@@ -55,10 +55,10 @@ class AuthController extends BaseController
             $this->model = new StaffModel();
             $update = $this->model->updatePassword(\session()->get('id'), $data['pass1']);
             if ($update) {
-                return \redirect()->route('home')->with('message', 'Senha atualizada com sucesso!');
+                return redirect()->route('home')->with('message', 'Senha atualizada com sucesso!');
             }
         } else {
-            return \redirect()->route('updatePassword')->with('errors', $this->validator->getErrors());
+            return \redirect()->route('setup')->with('errors', $this->validator->getErrors());
         }
     }
 
@@ -75,8 +75,25 @@ class AuthController extends BaseController
 
     }
 
-    public function out()
+    public function postUpdateLogin()
     {
-        echo 'You are out!';
+        $data = $this->request->getPost(['name', 'name2']);
+        $valid = $this->validateData($data, [
+            'name' => 'required|min_length[3]', 'name2' => 'required|min_length[3]'],
+            [
+                'name' => ['required' => 'Campo obrigatório',  'min_length' => 'O login é muito curto'],
+                'name2' => ['required' => 'Campo obrigatório', 'min_length' => 'O login é muito curto' ]
+            ]
+        );
+
+        if ($valid) {            
+            $this->model = new StaffModel();
+            $update = $this->model->updateLogin($data['name'], \session()->get('id'));
+            if ($update) {
+                return \redirect()->route('home')->with('message', 'Login atualizado com sucesso!');
+            }
+        } else {
+            return \redirect()->route('setup')->with('errors', $this->validator->getErrors());
+        }
     }
 }

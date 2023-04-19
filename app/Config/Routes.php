@@ -61,7 +61,7 @@ $routes->post('/returnKey', 'KeysController::returnKey', ['as' => 'returnKey']);
 $routes->post('/postReportKey', 'PagesController::postReportKey', ['as' => 'postReportKey']);
 $routes->post('/postReportUser', 'PagesController::postReportUser', ['as' => 'postReportUser']);
 $routes->post('/postReportStaff', 'PagesController::postReportStaff', ['as' => 'postReportStaff']);
-$routes->post('/postUpdateLogin', 'AuthController::updateLogin', ['as' => 'postUpdateLogin']);
+$routes->post('/postUpdateLogin', 'AuthController::postUpdateLogin', ['as' => 'postUpdateLogin']);
 $routes->post('/postUpdatePassword', 'AuthController::postUpdatePassword', ['as' => 'postUpdatePassword']);
 
 /*

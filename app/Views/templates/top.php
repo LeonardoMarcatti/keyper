@@ -20,11 +20,8 @@
    </head>
    <body>
       <header>
-         <div id="flash">
-            <?php
-               if (session()->getFlashdata('message')) { ?>
-                  <p><?= session()->getFlashdata('message') ?></p>
-            <?php } ?>
+         <div>
+            <p id="flash"><?= session()->getFlashdata('message') ?? '' ?></p>
          </div>
          <span>
             <h1>Keyper</h1>
@@ -34,7 +31,7 @@
             <?php } ?>
          </span>
          <?php
-            if (session()->has('id') && session()->getFlashdata() == null) { ?>
+            if (session()->has('id') && session()->getFlashdata('message') == null) { ?>
                <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid" id="navbar">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">

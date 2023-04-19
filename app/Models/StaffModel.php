@@ -51,6 +51,12 @@ class StaffModel extends Model
         return true;
     }
 
+    public function updateLogin(string $name, string $id)
+    {
+        $this->set('name', $name)->where('id', $id)->update();
+        return true;
+    }
+
     public function getAllStaff()
     {
         return $this->orderBy('id')->findAll();
