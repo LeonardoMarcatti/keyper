@@ -19,11 +19,12 @@ class PagesController extends BaseController
 
     public function mainPage()
     {
+
         if (\session()->has('id')) {
             return view('templates/top') . view('mainPage') . view('templates/bottom');
         }
 
-        return view('templates/top') . view('home') . view('templates/bottom');
+        return \redirect()->route('home');
     }
 
     public function setup()
